@@ -288,6 +288,10 @@ void show()
 			{
 				setfillcolor(BLACK);
 			}
+			else if (map == 1)
+			{
+				setfillcolor(RGB(141,255,0));
+			}
 			else	setfillcolor(WHITE);
 			fillrectangle(j * BLOCK_SIZE, i * BLOCK_SIZE, (j + 1) * BLOCK_SIZE, (i + 1) * BLOCK_SIZE);
 		}
