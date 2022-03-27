@@ -239,9 +239,9 @@ void moveSnake()
 void startup()
 {
 	int i;
-	Blocks[HEIGHT / 2][WIDTH / 2] = 1;
+	Blocks[HEIGHT / 2+5][WIDTH / 2] = 1;
 	for (i = 1; i <= 4; i++)
-		Blocks[HEIGHT / 2][WIDTH / 2 - i] = i + 1;
+		Blocks[HEIGHT / 2+5][WIDTH / 2 - i] = i + 1;
 	moveDirection = 'd';
 	food_i = rand() % (HEIGHT - 5) + 2;
 	food_j = rand() % (WIDTH - 5) + 2;
