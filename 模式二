@@ -17,7 +17,8 @@ char moveDirection;
 
 void map_choose()
 {
-                
+          if(map==1)
+	  {
 		for (int j = 0; j < 6; j++)
 		{
 			Blocks[j][7] = -1;
@@ -81,6 +82,7 @@ void map_choose()
 				Blocks[i][j] = -1;
 			}
 		}
+	}
 
 }
 
@@ -346,6 +348,7 @@ void updateWithInput()
 
 int main() //  主函数
 {
+        map=1;
         map_choose();
 	menu();
 	choose();
