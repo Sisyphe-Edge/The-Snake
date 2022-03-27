@@ -253,8 +253,18 @@ void startup()
 	for (i = 1; i <= 4; i++)
 		Blocks[HEIGHT / 2+5][WIDTH / 2 - i] = i + 1;
 	moveDirection = 'd';
-	food_i = rand() % (HEIGHT - 5) + 2;
-	food_j = rand() % (WIDTH - 5) + 2;
+	while (1)
+		{
+			int m, n;
+			m = rand() % (HEIGHT - 5) + 2;
+			n = rand() % (WIDTH - 5) + 2;
+			if (Blocks[m][n] == 0)
+			{
+				food_i = m;
+				food_j = n;
+				break;
+			}
+		}
 	initgraph(WIDTH * BLOCK_SIZE, HEIGHT * BLOCK_SIZE);
 	setlinecolor(RGB(236, 236, 236));
 	BeginBatchDraw();
