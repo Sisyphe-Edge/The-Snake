@@ -15,6 +15,75 @@ int food_i, food_j;
 int isFailure = 0;
 char moveDirection;
 
+void map_choose()
+{
+                
+		for (int j = 0; j < 6; j++)
+		{
+			Blocks[j][7] = -1;
+		}
+		for (int j = 13; j < 21; j++)
+		{
+			Blocks[j][7] = -1;
+		}
+		for (int j = 0; j < 6; j++)
+		{
+			Blocks[j][30] = -1;
+		}
+		for (int j = 13; j < 21; j++)
+		{
+			Blocks[j][30] = -1;
+		}
+		for (int j = 11; j < 26; j++)
+		{
+			Blocks[24][j] = -1;
+		}
+		for (int j = 0; j < 7; j++)
+		{
+			Blocks[5][j] = -1;
+		}
+		for (int j = 30; j < 39; j++)
+		{
+			Blocks[5][j] = -1;
+		}
+		for (int i = 7; i < 11; i++)
+		{
+			for (int j =13 ; j < 17; j++)
+			{
+				Blocks[i][j] = -1;
+			}
+		}
+		for (int i = 7; i < 11; i++)
+		{
+			for (int j = 21; j < 25; j++)
+			{
+				Blocks[i][j] = -1;
+			}
+		}
+		for (int i = 11; i < 15; i++)
+		{
+			for (int j = 17; j < 21; j++)
+			{
+				Blocks[i][j] = -1;
+			}
+		}
+		for (int i = 13; i <17 ; i++)
+		{
+			for (int j = 15; j < 17; j++)
+			{
+				Blocks[i][j] = -1;
+			}
+		}
+		for (int i = 13; i < 17; i++)
+		{
+			for (int j = 21; j < 23; j++)
+			{
+				Blocks[i][j] = -1;
+			}
+		}
+
+}
+
 void menu()
 {
 	initgraph(800, 600);
@@ -257,6 +326,7 @@ void updateWithInput()
 
 int main() //  主函数
 {
+        map_choose();
 	menu();
 	choose();
 	if (mode == 1)
