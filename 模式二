@@ -14,6 +14,7 @@ int Blocks[HEIGHT][WIDTH] = { 0 };
 int food_i, food_j;
 int isFailure = 0;
 char moveDirection;
+int map;
 
 void map_choose()
 {
@@ -90,7 +91,7 @@ void menu()
 {
 	initgraph(800, 600);
 	IMAGE menu;
-	loadimage(&menu, _T("./res/love_u.bmp"));
+	loadimage(&menu, _T("./res/love_u.bmp"));//需另外下载图片拖入对应文件夹中
 	putimage(90, 40, &menu);
 	setbkcolor(RGB(0, 0, 0));
 	setbkcolor(RGB(0, 0, 0));
