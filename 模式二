@@ -89,9 +89,14 @@ void map_choose()
 void menu()
 {
 	initgraph(800, 600);
+	IMAGE menu;
+	loadimage(&menu, _T("./res/love_u.bmp"));
+	putimage(90, 40, &menu);
+	setbkcolor(RGB(0, 0, 0));
 	setbkcolor(RGB(0, 0, 0));
 	setbkmode(TRANSPARENT);
 	settextcolor(RGB(255, 255, 255));
+	/*
 	settextstyle(100, 0, _T("楷体"));
 	outtextxy(240, 40, _T("贪吃蛇"));
 	settextstyle(30, 0, _T("楷体"));
@@ -102,6 +107,7 @@ void menu()
 	outtextxy(280, 330, _T("道具模式"));
 	settextstyle(60, 0, _T("楷体"));
 	outtextxy(280, 410, _T("剧情模式"));
+	*/
 }
 
 void choose()
