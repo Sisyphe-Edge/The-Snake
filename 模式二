@@ -134,17 +134,17 @@ void choose()
 		if (chs == 1)
 		{
 			settextstyle(60, 0, _T("楷体"));
-			outtextxy(220, 250, _T("→"));
+			outtextxy(175, 250, _T("→"));
 		}
 		if (chs == 2)
 		{
 			settextstyle(60, 0, _T("楷体"));
-			outtextxy(220, 330, _T("→"));
+			outtextxy(225, 310, _T("→"));
 		}
 		if (chs == 3)
 		{
 			settextstyle(60, 0, _T("楷体"));
-			outtextxy(220, 410, _T("→"));
+			outtextxy(200, 380, _T("→"));
 		}
 		if (judge == ' ')
 		{
