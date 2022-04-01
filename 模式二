@@ -15,6 +15,7 @@ int food_i, food_j;
 int isFailure = 0;
 char moveDirection;
 int map;
+int moveScore = 0;
 
 void map_choose()
 {
@@ -248,6 +249,7 @@ void moveSnake()
 				break;
 			}
 		}
+		moveScore++;
 	}
 	else
 	{
@@ -303,6 +305,14 @@ void show()
 			fillrectangle(j * BLOCK_SIZE, i * BLOCK_SIZE, (j + 1) * BLOCK_SIZE, (i + 1) * BLOCK_SIZE);
 		}
 	}
+	/*打印出得分
+	TCHAR s[80];
+	setbkmode(TRANSPARENT);
+	settextcolor(BLACK);
+	settextstyle(20, 0, _T("宋体"));
+	_stprintf_s(s, _T("得分: %d"), moveScore);
+	outtextxy(BLOCK_SIZE*35, BLOCK_SIZE, s);*/
+	//游戏失败界面打印
 	setfillcolor(RED);
 	fillrectangle(food_j * BLOCK_SIZE, food_i * BLOCK_SIZE, (food_j + 1) * BLOCK_SIZE, (food_i + 1) * BLOCK_SIZE);
 	if (isFailure)
