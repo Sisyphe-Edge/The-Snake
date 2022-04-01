@@ -3,6 +3,7 @@
 #include<stdio.h>
 #include<iostream>
 #include<algorithm>
+
 using namespace std;
 #define BLOCK_SIZE 20
 #define HEIGHT 30
@@ -15,12 +16,30 @@ int food_i, food_j;
 int isFailure = 0;
 char moveDirection;
 int map;
-int moveScore = 0;
+
+/*void screen()
+{
+	HANDLE hOutput;
+	COORD coord = { 0,0 };
+	hOutput = GetStdHandle(STD_OUTPUT_HANDLE);
+	int BeginTime = GetTickCount();
+	while(true)
+	{
+		if (GetTickCount() - 1000 / 6 >= BeginTime)
+		{
+			SetConsoleCursorPosition(hOutput, coord);
+			//会闪的部分
+
+			BeginTime = GetTickCount();
+		}
+	}
+}
+*/
 
 void map_choose()
 {
-          if(map==1)
-	  {
+	if (map == 1)
+	{
 		for (int j = 0; j < 6; j++)
 		{
 			Blocks[j][7] = -1;
@@ -51,7 +70,7 @@ void map_choose()
 		}
 		for (int i = 7; i < 11; i++)
 		{
-			for (int j =13 ; j < 17; j++)
+			for (int j = 13; j < 17; j++)
 			{
 				Blocks[i][j] = -1;
 			}
@@ -70,7 +89,7 @@ void map_choose()
 				Blocks[i][j] = -1;
 			}
 		}
-		for (int i = 13; i <17 ; i++)
+		for (int i = 13; i < 17; i++)
 		{
 			for (int j = 15; j < 17; j++)
 			{
@@ -92,14 +111,12 @@ void menu()
 {
 	initgraph(800, 600);
 	IMAGE menu;
-	loadimage(&menu, _T("./res/love_u.bmp"));//需另外下载图片拖入对应文件夹中
+	loadimage(&menu, _T("./res/_u.bmp"));
 	putimage(90, 40, &menu);
-	setbkcolor(RGB(0, 0, 0));
 	setbkcolor(RGB(0, 0, 0));
 	setbkmode(TRANSPARENT);
 	settextcolor(RGB(255, 255, 255));
-	/*
-	settextstyle(100, 0, _T("楷体"));
+	/*settextstyle(100, 0, _T("楷体"));
 	outtextxy(240, 40, _T("贪吃蛇"));
 	settextstyle(30, 0, _T("楷体"));
 	outtextxy(310, 160, _T("空格键选模式"));
@@ -116,19 +133,45 @@ void choose()
 {
 	int chs = 1;
 	settextstyle(60, 0, _T("楷体"));
-	outtextxy(220, 250, _T("→"));
+	outtextxy(175, 250, _T("→"));
 	char judge = '0';
 	while (judge != ' ')
 	{
 		judge = _getch();
 		if (judge == 'w' && chs != 1)
 		{
+				/*HANDLE hOutput;
+				hOutput = GetStdHandle(STD_OUTPUT_HANDLE);
+				int BeginTime = GetTickCount();
+				if (GetTickCount() - 1000 / 6 >= BeginTime)
+					{
+						//会闪的部分
+						cleardevice();
+						system("cls");
+						menu();
+						BeginTime = GetTickCount();
+					}
+					*/
+			cleardevice();
 			system("cls");
 			menu();
-			chs--;
+					chs--;	
 		}
 		if (judge == 's' && chs != 3)
 		{
+			/*HANDLE hOutput;
+			hOutput = GetStdHandle(STD_OUTPUT_HANDLE);
+			int BeginTime = GetTickCount();
+			if (GetTickCount() - 1000 / 6 >= BeginTime)
+			{
+				//会闪的部分
+				cleardevice();
+				system("cls");
+				menu();
+				BeginTime = GetTickCount();
+			}
+			*/
+			cleardevice();
 			system("cls");
 			menu();
 			chs++;
@@ -225,7 +268,7 @@ void moveSnake()
 	else if (newHead_j < 0)
 		newHead_j = WIDTH - 1;
 
-	if (Blocks[newHead_i][newHead_j] > 0)
+	if (Blocks[newHead_i][newHead_j]!=0)
 	{
 		isFailure = 1;
 		return;
@@ -249,7 +292,6 @@ void moveSnake()
 				break;
 			}
 		}
-		moveScore++;
 	}
 	else
 	{
@@ -265,17 +307,17 @@ void startup()
 		Blocks[HEIGHT / 2+5][WIDTH / 2 - i] = i + 1;
 	moveDirection = 'd';
 	while (1)
+	{
+		int m, n;
+		m = rand() % (HEIGHT - 5) + 2;
+		n = rand() % (WIDTH - 5) + 2;
+		if (Blocks[m][n] == 0)
 		{
-			int m, n;
-			m = rand() % (HEIGHT - 5) + 2;
-			n = rand() % (WIDTH - 5) + 2;
-			if (Blocks[m][n] == 0)
-			{
-				food_i = m;
-				food_j = n;
-				break;
-			}
+			food_i = m;
+			food_j = n;
+			break;
 		}
+	}
 	initgraph(WIDTH * BLOCK_SIZE, HEIGHT * BLOCK_SIZE);
 	setlinecolor(RGB(236, 236, 236));
 	BeginBatchDraw();
@@ -303,16 +345,9 @@ void show()
 			}
 			else	setfillcolor(WHITE);
 			fillrectangle(j * BLOCK_SIZE, i * BLOCK_SIZE, (j + 1) * BLOCK_SIZE, (i + 1) * BLOCK_SIZE);
+
 		}
 	}
-	/*打印出得分
-	TCHAR s[80];
-	setbkmode(TRANSPARENT);
-	settextcolor(BLACK);
-	settextstyle(20, 0, _T("宋体"));
-	_stprintf_s(s, _T("得分: %d"), moveScore);
-	outtextxy(BLOCK_SIZE*35, BLOCK_SIZE, s);*/
-	//游戏失败界面打印
 	setfillcolor(RED);
 	fillrectangle(food_j * BLOCK_SIZE, food_i * BLOCK_SIZE, (food_j + 1) * BLOCK_SIZE, (food_i + 1) * BLOCK_SIZE);
 	if (isFailure)
@@ -369,8 +404,8 @@ void updateWithInput()
 
 int main() //  主函数
 {
-        map=1;
-        map_choose();
+	map = 1;
+	map_choose();
 	menu();
 	choose();
 	if (mode == 1)
